@@ -1,0 +1,6 @@
+{
+  "portal" : "http://portal:5000",
+  "search" : "http://search:5000",
+  "sale" : "http://sale:5000",
+  "campaign" : "http://campaign:5000"
+}
