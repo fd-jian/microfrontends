@@ -1,0 +1,4 @@
+{
+  "tagname": "campaign-app", 
+  "scripts": ["campaign/main-es2015.js"]
+}
