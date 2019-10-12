@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h2>Search:</h2>
-        <p>Search for the newest books inthe store</p>
+        <p>Search for the newest books in the store</p>
         <input />
       </header>
     </div>
