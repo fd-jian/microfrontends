@@ -1,10 +1,5 @@
-
-class Sale extends HTMLElement {
-
-  constructor() {
-    super();
-
-    this.innerHTML = `
+const template = document.createElement('template');
+template.innerHTML = `
       <div>
         <h2>Current Sales:</h2>
         <ul>
@@ -12,19 +7,21 @@ class Sale extends HTMLElement {
           <li>Advanced React</li> 
       </div>
     `;
+
+class Sale extends HTMLElement {
+
+  connectedCallback() {
+    this.attachShadow({ mode: 'open' })
+        .appendChild(template.content.cloneNode(true));
   }
 } 
 
+const SALE_APP = 'sale-component';
 
-window.customElements.define('sale-component', Sale);
+window.customElements.define(SALE_APP, Sale);
 
-if (!window.mount) {
-  window.mount = {};
-}
-
-window.mount.Sale = () => {
-  document.querySelector('#Sale-container').innerHTML = 
-    '<sale-component></sale-component>';
+if (window.createMount) {
+  window.createMount('Sale', SALE_APP);
 }
 
 

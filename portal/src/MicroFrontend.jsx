@@ -1,36 +1,25 @@
 import React, { useEffect } from 'react';
 
-
-
 export default ({ name, path }) => {
 
   useEffect(() => {
-
-    // add cache control here (maybe expire date)
-    const mountFunction = window.mount[name];
-
-    if (mountFunction) {
-      mountFunction();
-      return;
-    }
-
-    fetch(`${path}/asset-manifest.json`)
+    fetch(`${path}/component-manifest.json`)
       .then(res => res.json())
       .then(manifest => {
         loadScripts(manifest, name);
       })
       .catch(e => console.log(e));
-  });
+  }, []);
 
   return <div id={`${name}-container`} />;
 
 }
 
-function createScriptTag(scriptName, manifest, onload) {
+function createScriptTag(scriptName, onload) {
 
   const script = document.createElement('script');
   //script.id = scriptId;
-  script.src = `${manifest['files'][scriptName]}`;
+  script.src = scriptName;
   script.onload = onload;
 
   console.log('created script', scriptName)
@@ -39,14 +28,7 @@ function createScriptTag(scriptName, manifest, onload) {
 }
 
 
-function loadScripts(manifest, name) {
-
-  // problem known https://github.com/facebook/create-react-app/issues/5306
-  const scripts = [
-  //  'runtime-main.js', 
-  //  'static/js/2.360c2576.chunk.js', 
-    'main.js'
-  ];
+function loadScripts({ scripts }, name) {
 
   let count = scripts.length 
 
@@ -54,12 +36,12 @@ function loadScripts(manifest, name) {
     count--;
     if (count === 0) {
       console.log('mounting', name)
-      window.mount[name]();
+      window[name].mount(`${name}-container`);
     }
   }
 
   scripts.forEach(script => {
-    createScriptTag(script, manifest, done);
+    createScriptTag(script, done);
   });
 
 }

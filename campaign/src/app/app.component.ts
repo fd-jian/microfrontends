@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,11 @@ import { Component, ViewEncapsulation } from '@angular/core';
 export class AppComponent {
   title = 'Campaign';
   count = 0;
-
+  
   public getLikes() {
     return this.count;
   }
-
+  
   public like() {
     this.count++;
   }

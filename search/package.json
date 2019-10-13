@@ -12,7 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "node ./scripts/build-non-split.js",
-    "postbuild": "rm -f -r target && mkdir -p target/search && mv build/* target/search/",
+    "postbuild": "rm -f -r target && mkdir -p target/search && mv build/* target/search/ && node ./scripts/createComponentManifest.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -17,7 +17,13 @@ export class AppModule {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
+
+    const CAMPAIGN_APP = 'campaign-app';
     const customElement = createCustomElement(AppComponent, {injector: this.injector});
-    customElements.define('campaign-app', customElement);
+    customElements.define(CAMPAIGN_APP, customElement);
+
+    if (window.createMount) {
+      window.createMount('Campaign', CAMPAIGN_APP);
+    }
   }
 }

@@ -60,12 +60,8 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 declare global {
 
-    interface MountObject {
-      Campaign: () => void;
-    }
-
     interface Window {
-      mount: MountObject;
+      createMount(name: string, tagName: string): void;
     }
   }
 
