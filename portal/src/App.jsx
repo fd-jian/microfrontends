@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Hallo React Microfrontends</h1>
+        <h1>React Microfrontends</h1>
       </header>
       <div className="row">
         <div className="column">
