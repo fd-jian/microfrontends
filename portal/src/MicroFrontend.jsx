@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import indicator from './indicator.svg';
 
 
 export default ({ name, path }) => {
+
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
 
@@ -17,13 +19,17 @@ export default ({ name, path }) => {
     fetch(`${path}/asset-manifest.json`)
       .then(res => res.json())
       .then(manifest => {
-        loadScripts(manifest, name);
+        loadScripts(manifest, name, setDone);
       })
       .catch(e => console.log(e));
   });
 
-  return <div id={`${name}-container`} />;
-
+  return (
+    <>
+      {!done && <img src={indicator} />}
+      <div id={`${name}-container`}/>
+    </>
+  );
 }
 
 function createScriptTag(scriptName, manifest, onload) {
@@ -39,7 +45,7 @@ function createScriptTag(scriptName, manifest, onload) {
 }
 
 
-function loadScripts(manifest, name) {
+function loadScripts(manifest, name, setDone) {
 
   // problem known https://github.com/facebook/create-react-app/issues/5306
   const scripts = [
@@ -55,6 +61,7 @@ function loadScripts(manifest, name) {
     if (count === 0) {
       console.log('mounting', name)
       window.mount[name]();
+      setDone(true);
     }
   }
 

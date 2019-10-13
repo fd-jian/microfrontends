@@ -9,6 +9,8 @@ const findEnv = () => (process.argv.length > 2) ?
 const fs = require('fs');
 const env = JSON.parse(fs.readFileSync(`${findEnv()}.json`));
 
+const port = env.port || 3000;
+
 var app = express();
 
 
@@ -24,4 +26,4 @@ app.use(
   })
 );
 
-app.listen(3000);
+app.listen(port);
