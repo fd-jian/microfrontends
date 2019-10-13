@@ -1,18 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import indicator from './indicator.svg';
 
 export default ({ name, path }) => {
+
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     fetch(`${path}/component-manifest.json`)
       .then(res => res.json())
       .then(manifest => {
-        loadScripts(manifest, name);
+        loadScripts(manifest, name, setDone);
       })
       .catch(e => console.log(e));
   }, []);
 
-  return <div id={`${name}-container`} />;
-
+  return (
+    <>
+      {!done && <img src={indicator} />}
+      <div id={`${name}-container`}/>
+    </>
+  );
 }
 
 function createScriptTag(scriptName, onload) {
@@ -28,7 +35,7 @@ function createScriptTag(scriptName, onload) {
 }
 
 
-function loadScripts({ scripts }, name) {
+function loadScripts({ scripts }, name, setDone) {
 
   let count = scripts.length 
 
@@ -37,6 +44,7 @@ function loadScripts({ scripts }, name) {
     if (count === 0) {
       console.log('mounting', name)
       window[name].mount(`${name}-container`);
+      setDone(true);
     }
   }
 
