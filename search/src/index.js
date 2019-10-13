@@ -3,18 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-const SEARCH_APP = 'search-app';
-
-
 class SearchApp extends HTMLElement {
 
+  static observedAttributes = ['user']
+
   connectedCallback() {
-    const mountPoint = document.createElement('span');
+    this.mountPoint = document.createElement('span');
     const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(mountPoint);
+    shadowRoot.appendChild(this.mountPoint);
 
     // https://github.com/facebook/react/issues/9242#issuecomment-534096832
-    Object.defineProperty(mountPoint, "ownerDocument", { value: shadowRoot });
+    Object.defineProperty(this.mountPoint, "ownerDocument", { value: shadowRoot });
 
     const mapDocumentMethods = (methods) => {
       methods.forEach(f => {
@@ -27,12 +26,35 @@ class SearchApp extends HTMLElement {
       'createTextNode'
     ]);
 
-    ReactDOM.render(<App />, mountPoint);
+    this.mount();
   }
+  
+  disconnectedCallback() {
+    ReactDOM.unmountComponentAtNode(this.mountPoint);
+  }
+
+  attributeChangedCallback(name) {
+    console.log('attributeChangedCallback', name)
+    if (name === 'user') {
+      this.mount();
+    } 
+  }
+
+  mount() {
+    ReactDOM.render(
+      <App user={this.getAttribute('user')}/>, 
+      this.mountPoint
+    );
+  }
+
+  set user(user) {
+    this.setAttribute('user', user);
+  }
+
+  get user() {
+    return this.getAttribute('user');
+  }
+
 }
 
-customElements.define(SEARCH_APP, SearchApp);
-
-if (window.createMount) {
-  window.createMount('Search', SEARCH_APP);
-}
+customElements.define('search-app', SearchApp);

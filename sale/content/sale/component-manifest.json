@@ -1,3 +1,4 @@
 {
+  "tagName": "sale-component", 
   "scripts": ["/sale/main.js"]
 }

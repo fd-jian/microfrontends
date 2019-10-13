@@ -16,12 +16,5 @@ class Sale extends HTMLElement {
   }
 } 
 
-const SALE_APP = 'sale-component';
-
-window.customElements.define(SALE_APP, Sale);
-
-if (window.createMount) {
-  window.createMount('Sale', SALE_APP);
-}
-
+window.customElements.define('sale-component', Sale);
 

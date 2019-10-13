@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 
-function App() {
+function App({ user }) {
 
   const [query, setQuery] = useState('');
 
@@ -19,6 +19,7 @@ function App() {
       <p>Search for the newest books in the store</p>
       <input value={query} onChange={handleChange} />
       {query && <p>Your are searching for '<i>{query}</i>'</p>}
+      <p><small>Currently Logged in User is <strong>{user}</strong></small></p>
     </div>
   );
 }
