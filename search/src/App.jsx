@@ -6,6 +6,7 @@ function App() {
   const [query, setQuery] = useState('');
 
   const handleChange = e => {
+    
     const newValue = e.target.value;
     if (newValue.length <= 20) {
       setQuery(newValue)
