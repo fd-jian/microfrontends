@@ -21,7 +21,8 @@ app.use(
     router: {
       '/sale': env.sale,
       '/search': env.search, 
-      '/campaign': env.campaign 
+      '/campaign': env.campaign,
+      '/recommendations': env.recommendations
     } 
   })
 );

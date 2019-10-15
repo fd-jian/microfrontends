@@ -13,7 +13,10 @@
   margin-bottom: 10px;
 }
 
-
+.App-header a {
+  font-size: 10px;
+  color: aqua;
+}
 
 /* Float four columns side by side */
 .column {

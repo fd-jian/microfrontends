@@ -23,3 +23,5 @@ services:
   campaign:
     build: campaign
   
+  recommendations:
+    build: recommendations

@@ -3,7 +3,7 @@ import './App.css';
 import MicroFrontend from './MicroFrontend';
 
 
-const users = ['Franzikarrr', 'Fredi'];
+const users = ['Franzikarrrr', 'Fredi'];
 
 function App() {
 
@@ -19,6 +19,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>React Microfrontends</h1>
+        <a href="#" onClick={switchUser}>Switch User</a>
       </header>
       <div className="row">
         <div className="column">
@@ -34,12 +35,9 @@ function App() {
         <div className="column">
           <div className="card">
             <MicroFrontend path="sale" user={user} />
+            <hr />
+            <MicroFrontend path="recommendations" user={user} />
           </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="column footer">
-          <a href="#" onClick={switchUser}>Switch User</a>
         </div>
       </div>
     </div>

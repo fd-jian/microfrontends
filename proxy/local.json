@@ -2,5 +2,6 @@
   "portal" : "http://localhost:5000",
   "search" : "http://localhost:5001",
   "sale" : "http://localhost:5002",
-  "campaign" : "http://localhost:5003"
+  "campaign" : "http://localhost:5003",
+  "recommendations" : "http://localhost:5004"
 }

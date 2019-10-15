@@ -1,0 +1,7 @@
+{
+    "tagName": "recom-app",
+    "scripts": [
+        "https://cdn.jsdelivr.net/npm/vue",
+        "/recommendations/recom-app.min.js"
+    ]
+}
