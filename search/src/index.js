@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 
 
-window.mount .Search = () => {
-    ReactDOM.render(<App />, document.getElementById('Search-container'));
-  };
+window.mount.Search = () => {
+    const MyComponent = 'App'
+    ReactDOM.render(<MyComponent />, document.getElementById('Search-container'));
+};
